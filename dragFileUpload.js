@@ -148,6 +148,10 @@ function createElement(event) {
 //   image.querySelector('img').src = img;
 // }
 
+/**
+ * 확대 이미지 보기
+ * @param {*} ele 추가될 이미지 부모 li 엘리먼트
+ */
 function expandImage(ele) {
   const target = ele.querySelector('img');
   target.addEventListener('click', () => {
