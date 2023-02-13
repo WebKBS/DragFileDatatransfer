@@ -1,29 +1,7 @@
 .upload_box{
-  display: flex;
-  gap: 24px;
-  align-items: flex-end;
   margin: 24px;
 }
 
-#representative{
-  width: 300px;
-  height: 300px;
-  border: 2px dashed #ccc;
-  border-radius: 10px;
-  position: relative;
-}
-#representative .representative_title{
-  width: 100%;
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-#representative .representative_title span{
-  display: block;
-  margin-top: 30px;
-}
 
 #upload{
   display: none;
@@ -53,9 +31,10 @@
   height: 100%;
   object-fit: contain;
   cursor: pointer;
+  filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, .15));
 }
 
-#imageList li .close_btn{
+#imageList li .image_close_btn{
   width: 32px;
   height: 32px;
   border: none;
@@ -67,8 +46,8 @@
   cursor: pointer;
 }
 
-#imageList li .close_btn::after,
-#imageList li .close_btn::before{
+#imageList li .image_close_btn::after,
+#imageList li .image_close_btn::before{
   content: "";
   display: block;
   width: 60%;
@@ -79,10 +58,10 @@
   left: 50%;
 }
 
-#imageList li .close_btn::after{
+#imageList li .image_close_btn::after{
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-#imageList li .close_btn::before{
+#imageList li .image_close_btn::before{
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
@@ -98,7 +77,13 @@
   border: 2px dashed #ccc;
   padding: 12px;
   cursor: pointer;
+  background: #fff;
 }
+
+.drag_wrap label[for=upload].on{
+  background: #eee;
+}
+
 
 .drag_wrap label[for=upload] svg{
   width: 36px;
