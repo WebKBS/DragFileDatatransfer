@@ -105,12 +105,19 @@ function viewImageHandler(fileList) {
   fileList.forEach((file) => {
     const reader = new FileReader();
     reader.addEventListener('load', (event) => {
-      const elements = createElement(event, file);
+      const elements = createElement(event);
+      const elementsPDF = createElementPDF(file.name);
 
-      console.log(file);
-      document.querySelector('#imageList ul').append(elements);
-      expandImage(elements);
-      closeImageHandler(elements);
+      if (file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png') {
+        document.querySelector('#imageList ul').append(elements);
+        expandImage(elements);
+        closeImageHandler(elements);
+      } else if (file.type === 'application/pdf') {
+        document.querySelector('#imageList ul').append(elementsPDF);
+        closeImageHandler(elementsPDF);
+      } else {
+        alert('유효한 확장자가 아닙니다.');
+      }
     });
     reader.readAsDataURL(file);
   });
@@ -118,7 +125,7 @@ function viewImageHandler(fileList) {
 window.addEventListener('load', () => {});
 
 /**
- * 파일 생성시 엘리먼트 추가
+ * 파일 생성시 이미지 엘리먼트 추가
  * @param event - event 대상
  */
 function createElement(event) {
@@ -132,22 +139,20 @@ function createElement(event) {
   return li;
 }
 
-// addFunc(boolean, "block", src)
-// function addFunc(isDisable, style = 'none', img) {
-//   const input = document.getElementById('upload');
-//   const button = document.querySelector('.file_delete');
-//   const image = document.querySelector('.label_img_wrap');
-//   const imgElement = document.createElement('img');
-//   const textWrap = document.querySelector('.text_wrap');
-
-//   image.setAttribute('data-toggle', 'modal');
-//   image.setAttribute('data-target', '.bd-example-modal-lg');
-//   input.disabled = isDisable;
-//   button.style.display = style;
-//   textWrap.style.display = 'none';
-//   image.append(imgElement);
-//   image.querySelector('img').src = img;
-// }
+/**
+ * 파일 생성시 PDF 엘리먼트 추가
+ * @param event - event 대상
+ */
+function createElementPDF(text) {
+  const li = document.createElement('li');
+  const button = document.createElement('button');
+  const span = document.createElement('span');
+  button.className = 'image_close_btn';
+  span.textContent = text;
+  li.append(button);
+  li.append(span);
+  return li;
+}
 
 /**
  * 확대 이미지 보기
