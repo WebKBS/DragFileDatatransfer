@@ -107,6 +107,7 @@ function viewImageHandler(fileList) {
     reader.addEventListener('load', (event) => {
       const elements = createElement(event, file);
 
+      console.log(file);
       document.querySelector('#imageList ul').append(elements);
       expandImage(elements);
       closeImageHandler(elements);
@@ -168,14 +169,15 @@ function expandImage(ele) {
     div.style.width = '100%';
     div.style.height = '100%';
     div.style.zIndex = '2000';
+    div.style.overflowY = 'auto';
     img.style.maxWidth = '80%';
     img.style.position = 'absolute';
-    img.style.top = '50%';
+    img.style.top = '0';
     img.style.left = '50%';
-    img.style.transform = 'translate(-50%, -50%)';
+    img.style.transform = 'translateX(-50%)';
     document.body.append(div);
     document.querySelector('.view_modal').addEventListener('click', (ev) => {
-      if (ev.target === document.querySelector('.view_modal')) {
+      if (ev.currentTarget === document.querySelector('.view_modal')) {
         document.querySelector('.view_modal').remove();
       }
     });
