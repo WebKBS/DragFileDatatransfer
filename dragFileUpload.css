@@ -66,6 +66,7 @@
   right: -10px;
   cursor: pointer;
 }
+
 #imageList li .close_btn::after,
 #imageList li .close_btn::before{
   content: "";
@@ -77,6 +78,7 @@
   top: 50%;
   left: 50%;
 }
+
 #imageList li .close_btn::after{
   transform: translate(-50%, -50%) rotate(-45deg);
 }
@@ -95,6 +97,7 @@
   border-radius: 8px;
   border: 2px dashed #ccc;
   padding: 12px;
+  cursor: pointer;
 }
 
 .drag_wrap label[for=upload] svg{
