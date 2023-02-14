@@ -141,7 +141,7 @@ function createElement(event) {
 
 /**
  * 파일 생성시 PDF 엘리먼트 추가
- * @param event - event 대상
+ * @param text - pdf 파일 이름
  */
 function createElementPDF(text) {
   const li = document.createElement('li');
@@ -174,12 +174,12 @@ function expandImage(ele) {
     div.style.width = '100%';
     div.style.height = '100%';
     div.style.zIndex = '2000';
+    div.style.display = 'flex';
+    div.style.justifyContent = 'center';
+    div.style.alignItems = 'center';
     div.style.overflowY = 'auto';
     img.style.maxWidth = '80%';
-    img.style.position = 'absolute';
-    img.style.top = '0';
-    img.style.left = '50%';
-    img.style.transform = 'translateX(-50%)';
+    img.style.maxHeight = '80%';
     document.body.append(div);
     document.querySelector('.view_modal').addEventListener('click', (ev) => {
       if (ev.currentTarget === document.querySelector('.view_modal')) {
@@ -187,4 +187,41 @@ function expandImage(ele) {
       }
     });
   });
+}
+
+/**
+ * 이미지 불러오기 함수
+ * @param srcImage - 이미지 주소
+ * */
+function addFileImage(srcImage) {
+  const parentElement = document.querySelector('#imageList ul');
+  const li = document.createElement('li');
+  const button = document.createElement('button');
+  button.className = 'delete_file_btn';
+
+  const img = document.createElement('img');
+  img.src = srcImage;
+  li.append(button);
+  li.append(img);
+  closeImageHandler(li);
+  expandImage(li);
+  return parentElement.append(li);
+}
+
+/**
+ * PDF 불러오기 함수
+ * @param srcPDFname - PDF 파일이름
+ * */
+function addFilePDF(srcPDFname) {
+  const parentElement = document.querySelector('#imageList ul');
+  const li = document.createElement('li');
+  const button = document.createElement('button');
+  button.className = 'delete_file_btn';
+
+  const span = document.createElement('span');
+  span.textContent = srcPDFname;
+  li.append(button);
+  li.append(span);
+  closeImageHandler(li);
+  return parentElement.append(li);
 }

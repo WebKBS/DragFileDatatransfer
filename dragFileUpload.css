@@ -1,80 +1,78 @@
-.upload_box{
-  margin: 24px;
-}
 
-
-#upload{
+#upload {
   display: none;
 }
 
-#imageList ul{
+#imageList ul {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
-#imageList{
+#imageList {
   display: flex;
   gap: 18px;
 }
 
-#imageList li{
-  width: 100px;
-  height: 100px;
-  border-radius: 8px;
-  border: 2px dashed #ccc;
-  padding: 12px;
-  position: relative;
-}
+  #imageList li {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      border: 2px dashed #ccc;
+      padding: 12px;
+      position: relative;
+  }
 
-#imageList li span{
-  font-size: 12px;
-  word-break: break-all;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-}
+      #imageList li span {
+          font-size: 12px;
+          word-break: break-all;
+          width: 100%;
+          height: 100%;
+          overflow-y: auto;
+      }
 
-#imageList li img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  cursor: pointer;
-  filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, .15));
-}
+      #imageList li img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          cursor: pointer;
+          filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, .15));
+      }
 
-#imageList li .image_close_btn{
-  width: 32px;
-  height: 32px;
-  border: none;
-  background: #f00;
-  position: absolute;
-  border-radius: 50%;
-  top: -10px;
-  right: -10px;
-  cursor: pointer;
-  z-index: 10;
-}
+      #imageList li .delete_file_btn {
+          width: 32px;
+          height: 32px;
+          border: none;
+          background: #f00;
+          position: absolute;
+          border-radius: 50%;
+          top: -10px;
+          right: -10px;
+          cursor: pointer;
+          z-index: 10;
+      }
 
-#imageList li .image_close_btn::after,
-#imageList li .image_close_btn::before{
-  content: "";
-  display: block;
-  width: 60%;
-  height: 1px;
-  background: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
+          #imageList li .delete_file_btn::after,
+          #imageList li .delete_file_btn::before {
+              content: "";
+              display: block;
+              width: 60%;
+              height: 1px;
+              background: #fff;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+          }
 
-#imageList li .image_close_btn::after{
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-#imageList li .image_close_btn::before{
-  transform: translate(-50%, -50%) rotate(45deg);
-}
+          #imageList li .delete_file_btn::after {
+              transform: translate(-50%, -50%) rotate(-45deg);
+          }
 
-.drag_wrap label[for=upload]{
+          #imageList li .delete_file_btn::before {
+              transform: translate(-50%, -50%) rotate(45deg);
+          }
+
+.drag_wrap label[for=upload] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,17 +82,17 @@
   height: 100px;
   border-radius: 8px;
   border: 2px dashed #ccc;
-  padding: 12px;
+  padding: 8px;
   cursor: pointer;
   background: #fff;
 }
 
-.drag_wrap label[for=upload].on{
-  background: #eee;
-}
+  .drag_wrap label[for=upload].on {
+      background: #eee;
+  }
 
 
-.drag_wrap label[for=upload] svg{
-  width: 36px;
-  height: 36px;
-}
+  .drag_wrap label[for=upload] svg {
+      width: 36px;
+      height: 36px;
+  }
