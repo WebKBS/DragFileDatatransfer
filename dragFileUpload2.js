@@ -94,6 +94,7 @@ function closeImageHandler(target) {
   const removeTargetElement = target.querySelector('button');
   removeTargetElement.addEventListener('click', () => {
     removeTargetElement.parentElement.remove();
+    console.log(target);
   });
 }
 

@@ -79,7 +79,6 @@ function uploadFile(file) {
   formData.append('file', file);
 
   let url = ''; // 전송 url
-
   // fetch(url, {
   //   method: 'POST',
   //   body: formData,
@@ -122,7 +121,6 @@ function viewImageHandler(fileList) {
     reader.readAsDataURL(file);
   });
 }
-window.addEventListener('load', () => {});
 
 /**
  * 파일 생성시 이미지 엘리먼트 추가
