@@ -47,10 +47,9 @@ function dropHandler(event) {
   event.preventDefault();
   event.stopPropagation();
 
-  let files = event.dataTransfer.files; // 드래그 파일 리스트
+  let files = event.dataTransfer.files[0]; // 드래그 파일 리스트
 
-  handleFiles(files);
-  viewImageHandler([...files]);
+  viewImageHandler(files);
   uploadLabel.classList.remove("on");
 }
 
@@ -58,32 +57,9 @@ function dropHandler(event) {
  * Input 체인지 이벤트 핸들러
  */
 function changeHandler(event) {
-  let files = event.target.files; // input 파일 리스트
-  handleFiles(files);
-  viewImageHandler([...files]);
-}
+  let files = event.target.files[0]; // input 파일 리스트
 
-/**
- * 파일 핸들러
- * @param files - 들어올 file list
- */
-function handleFiles(files) {
-  [...files].forEach(uploadFile);
-}
-
-/**
- * form data 파일 업로드
- *  */
-function uploadFile(file) {
-  let formData = new FormData();
-  formData.append("file", file);
-
-  let url = ""; // 전송 url
-
-  // fetch(url, {
-  //   method: 'POST',
-  //   body: formData,
-  // });
+  viewImageHandler(files);
 }
 
 /**
@@ -103,40 +79,20 @@ function closeImageHandler(target) {
  * @param {*} fileList - input 및 드래그에 들어가는 파일 요소
  */
 function viewImageHandler(fileList) {
-  fileList.forEach((file) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", (event) => {
-      const elements = createElement(event);
-      const elementsPDF = createElementPDF(file.name);
-
-      if (
-        file.type === "image/jpeg" ||
-        file.type === "image/jpg" ||
-        file.type === "image/png"
-      ) {
-        document.querySelector("#imageList ul").append(elements);
-        expandImage(elements);
-        closeImageHandler(elements);
-      } else if (file.type === "application/pdf") {
-        document.querySelector("#imageList ul").append(elementsPDF);
-        closeImageHandler(elementsPDF);
-      } else {
-        alert("유효한 확장자가 아닙니다.");
-      }
-    });
-    reader.readAsDataURL(file);
-  });
+  const url = URL.createObjectURL(fileList);
+  const elements = createElementImage(url);
+  document.querySelector("#imageList ul").append(elements);
 }
 
 /**
  * 파일 생성시 이미지 엘리먼트 추가
  * @param event - event 대상
  */
-function createElement(event) {
+function createElementImage(event) {
   const li = document.createElement("li");
   const button = document.createElement("button");
   const img = document.createElement("img");
-  img.setAttribute("src", event.target.result);
+  img.src = event;
   button.className = "delete_file_btn";
   li.append(button);
   li.append(img);
